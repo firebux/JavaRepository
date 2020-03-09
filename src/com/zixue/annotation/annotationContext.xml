@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--Bean的装配-->
+<!--Bean的装配可以理解为依赖关系的注入，Bean的装配方式也就是Bean的依赖注入方式；-->
+<!--Spring支持多种形式Bean的装配方式，例如，基于XML的Bean装配、基于Annotation的Bean装配以及自动装配（autowire属性）等。。-->
+<!--下边就通过配置分别介绍这几种装配方式的用法-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+
+            http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    通过自动装配来指示Spring如何加载Bean，通过autowire属性    -->
+<!--    <bean id="personDao" class="com.zixue.annotation.PersonDaoImpl" autowire="byName" />-->
+<!--    <bean id="personService" class="com.zixue.annotation.PersonServiceImpl" autowire="byName"/>-->
+<!--    <bean id="personAction"  class="com.zixue.annotation.PersonAction" autowire="byName"/>-->
+
+
+<!--    使用context命名空间，通知spring扫描指定目录，进行注解的解析-->
+<!--    <context:component-scan base-package="com.zixue.annotation" />-->
+
+
+<!--    通过Autowired注解来指示Spring如何加载Bean，此时可不必要在注解后面定义名字    -->
+    <context:component-scan base-package="com.zixue.annotation" />
+
+</beans>

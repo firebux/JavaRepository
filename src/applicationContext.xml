@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="personService" class="com.zixue.springdemo.PersonServiceImpl">
+<!--        通过 setter方法 注入，推荐此方法-->
+        <property name="personDao" ref="personDao"/>
+
+<!--        通过 构造方法 注入-->
+<!--        <constructor-arg name="personDao" ref="personDao"/> -->
+    </bean>
+
+    <bean id="personDao" class="com.zixue.springdemo.PersonDaoImpl"/>
+
+    <bean id="person2" class="com.zixue.staticfactory.MyBeanFactory" factory-method="createBean" scope="prototype"/>
+
+<!-- 使用设置注入方式装配Person实例-->
+    <bean id="personSetter" class="com.zixue.staticfactory.Person">
+        <property name="name" value="zhangsan"/>
+        <property name="age" value="25"/>
+    </bean>
+
+<!--  使用构造方法装配Person实例  -->
+    <bean id="personConstruct" class="com.zixue.staticfactory.Person">
+        <constructor-arg index="0" value="lisensen"/>
+        <constructor-arg index="1" value="29"/>
+    </bean>
+
+    <context:component-scan base-package="com.zixue.annotation"/>
+
+</beans>

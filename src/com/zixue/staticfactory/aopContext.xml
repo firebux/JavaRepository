@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="personDao" class="com.zixue.springdemo.PersonDaoImpl"/>
+    <bean id="myAspect" class = "com.zixue.staticfactory.MyAspect"/>
+
+<!--    声明创建代理对象-->
+    <bean id="personDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+<!--        代理实现的接口-->
+        <property name="proxyInterfaces" value="com.zixue.springdemo.PersonDao"/>
+<!--        代理的目标对象-->
+        <property name="target" ref="personDao"/>
+<!--        通知增强的对象-->
+        <property name="interceptorNames" value="myAspect"/>
+<!--        如何生成代理，是否对类代理而不是接口，true:使用cglib对类代理; false:使用jdk对接口代理-->
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+</beans>
